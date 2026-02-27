@@ -3,9 +3,9 @@ import pool from '@/utils/db';
 
 export async function GET(
     request: Request,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
-    const subjectId = params.id;
+    const { id: subjectId } = await params;
 
     try {
         // 1. Get Subject details

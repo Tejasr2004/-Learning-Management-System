@@ -4,8 +4,9 @@ import { verifyAuth } from '@/utils/auth';
 
 export async function GET(
     request: Request,
-    { params }: { params: { videoId: string } }
+    { params }: { params: Promise<{ videoId: string }> }
 ) {
+    const { videoId } = await params;
     const user = verifyAuth(request);
     if (!user) {
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -14,7 +15,7 @@ export async function GET(
     try {
         const [progress]: any = await pool.query(
             'SELECT last_watched_sec, completed FROM user_progress WHERE user_id = ? AND video_id = ?',
-            [user.userId, params.videoId]
+            [user.userId, videoId]
         );
 
         if (progress.length === 0) {
