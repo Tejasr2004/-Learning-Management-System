@@ -1,0 +1,24 @@
+{
+  "name": "lms-learning-management-system",
+  "version": "1.0.0",
+  "description": "Learning Management System Build with Next.js, Express, and MySQL",
+  "scripts": {
+    "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
+    "start:frontend": "cd frontend && npm run dev",
+    "start:backend": "cd backend && node server.js",
+    "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install"
+  },
+  "keywords": [
+    "lms",
+    "nextjs",
+    "react",
+    "express",
+    "mysql",
+    "tailwindcss"
+  ],
+  "author": "Tejas",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
